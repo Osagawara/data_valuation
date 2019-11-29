@@ -1,3 +1,5 @@
+import time
+import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Flatten
 from keras.layers import Conv2D, MaxPooling2D
@@ -52,8 +54,11 @@ if __name__ == '__main__':
 
     model = classifier.get_classifier()
     model.compile(loss='categorical_crossentropy', optimizer=opt, metrics=['accuracy'])
+    print(model.metrics_names)
 
     (x_train, y_train), (x_test, y_test) = cifar10.load_data()
+
+    print(y_train)
     x_train = x_train.astype('float32')
     x_test = x_test.astype('float32')
     x_train /= 255
@@ -61,7 +66,10 @@ if __name__ == '__main__':
     y_train = to_categorical(y_train, num_class)
     y_test = to_categorical(y_test, num_class)
 
-    model.fit(x_train, y_train, batch_size, epochs, validation_data=(x_test, y_test), shuffle=True)
+    a = [1, 2, 3]
+    b = np.random.permutation(3)
+    print(a[b])
 
+    # model.fit(x_train, y_train, batch_size, epochs, validation_data=(x_test, y_test), shuffle=True)
 
 
